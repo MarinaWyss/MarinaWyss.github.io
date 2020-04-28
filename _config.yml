@@ -94,7 +94,7 @@ analytics:
 # Site Author
 author:
   name             : "Marina Wyss"
-  avatar           : "images/myface.jpg"
+  avatar           : "/Users/marinabennett/Desktop/DataScience/MarinaWyss.github.io/images/myface.jpg"
   bio              : "Hi there. My name is Marina, and I'm a Junior Data Scientist living in Berlin. I did my undergrad at U.C. Berkeley, and I just completed a Master's program at the Hertie School, where I focused on social data science courses. I'm pretty new to data science, so there's a lot I don't know yet. This blog is where I'm cataloging the stuff I'm curious about, and what I learn."
   location         : "Berlin, Germany"
   email            :
