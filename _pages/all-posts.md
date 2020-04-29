@@ -1,10 +1,10 @@
 ---
 layout: archive
 permalink: /all-posts/
-title: "All Posts by Tags"
+title: "Stuff I've Learned (by Tags)"
 author_profile: true
 header: 
-  image: "/images/berlin.jpg"
+  image: "/images/geo.png"
 ---
 
 {% include group-by-array collection=site.posts field="tags" %}
