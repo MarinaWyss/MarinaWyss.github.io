@@ -3,8 +3,6 @@ layout: archive
 permalink: /all-posts/
 title: "All Posts by Tags"
 author_profile: true
-header:
-  image: "/images/geo.png"
 ---
 
 {% include base_path %}
