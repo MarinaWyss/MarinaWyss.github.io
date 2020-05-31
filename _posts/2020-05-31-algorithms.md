@@ -1,7 +1,7 @@
 ---
 title: "Algorithms"
-date: 2020-05-27
-tags: [statistics]
+date: 2020-05-31
+tags: [computer science]
 header: 
   image: "/images/algorithms/big_o_banner.jpg"
 excerpt: "Big O notation, sorting, and searching."
