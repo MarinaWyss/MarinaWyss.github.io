@@ -3,7 +3,7 @@ title: "Understanding Recursion"
 date: 2020-06-07
 tags: [computer science, python]
 header: 
-  image: "/images/recursion/recursion.png"
+  image: "/images/recursion/google_recursion.png"
 excerpt: "The secret was the call stack!"
 ---
 
@@ -15,12 +15,14 @@ But I noticed that I’ve struggled to put it into practice, and even to really 
 
 
 **Recursive Functions**
+
 A recursive function has two cases that could apply, given any input:
-* Base Case: The set of circumstances where a function will stop. There must be at least one base case specified in every recursive function, otherwise it could technically go on forever (at least until a “stack overflow” takes place). 
+* Base Case: The set of circumstances where the function will stop. There must be at least one base case specified in every recursive function, otherwise it could technically go on forever (at least until a “stack overflow” takes place). 
 * Recursive Case: The part where the function calls itself.
 
 
 **The Call Stack**
+
 When a function is called, some memory is set aside to actually do the operation. This is referred to as “pushing a function frame onto the call stack.” It is possible to have more than one function frame in memory at once, though typically only one is active at any given point in time. 
 
 A stack is a data structure that only lets you interact with the topmost item. When a new function is called, a new frame is pushed to the top of the stack, and it becomes the active frame. When a function finishes its work, its frame is popped off the stack, and the frame immediately below it becomes the new, active frame. This next function picks up immediately where it left off. 
@@ -46,17 +48,17 @@ print("The factorial of 5 is:", fact(5))
 
 In this example, `n == 1` is the base case, and `n * fact(n - 1)` is the recursive case. If we print `fact(5)`, the call stack could look as follows:
 
-fact(1) - base case
-fact(2)
-fact(3)
-fact(4)
-fact(5)
-print()
+1. fact(1) - base case
+2. fact(2) 
+3. fact(3)
+4. fact(4)
+5. fact(5)
+6. print()
 
 
 **Fibonacci**
 
-The basic recursive fibonacci functions looks like:
+The basic recursive Fibonacci function looks like:
 
 ```python
 def fib(n):
@@ -67,17 +69,17 @@ def fib(n):
 	else:
 		return fib(n - 2) + fib(n - 1) 
 
-print("The 5th fibonacci number is:", fib(5))
+print("The 5th Fibonacci number is:", fib(5))
 ```
 A breakdown of what happens here is:
 1. We first call print,
 2. Which calls fib(5),
 3. Which calls fib(4), then fib(3), then fib(2), 
-4. Then finally fib(1), which returns one
+4. Then finally fib(1), which returns 1
 5. At this point fib(1) is popped off the call stack, and the functions down the stack can start returning one at a time.
 6. Finally, we print the result.
 
-(This video)[https://www.youtube.com/watch?v=AfBqVVKg4GE] breaks it down quite nicely!
+[This video](https://www.youtube.com/watch?v=AfBqVVKg4GE) breaks it down quite nicely!
 
 
 **When to Use Recursion**
@@ -88,6 +90,7 @@ But, they can also be quite inefficient due to repeating functions over and over
 
 
 **Memoization**
+
 Memoization is an option for making recursive functions more efficient. According to Wikipedia, “In computing, memoization or memoisation is an optimization technique used primarily to speed up computer programs by storing the results of expensive function calls and returning the cached result when the same inputs occur again.” 
 
 Basically, it means that we remember the results from a particular function given a certain input, and in the future we simply access this value rather than running the function again. 
