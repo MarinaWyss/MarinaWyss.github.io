@@ -10,9 +10,9 @@ mathjax: "true"
 
 ## What I Learned: Some Common Distance Measures, and When to Use Them.
 
-Distance measures are used in machine learning for clustering and classification tasks. Generally speaking, a distance measure is an objective score that summarizes the relative differences between two objects, commonly rows of data that describe an observation.
+Distance measures are used in machine learning for clustering and classification tasks. Generally speaking, a distance measure is an objective score that summarizes the relative difference between two objects, commonly rows of data that describe an observation.
 
-There are MANY different distance measures (as evidenced by the 46 options in the R `philentropy::distance()` function), and choosing the most appropriate one is important, since they have a strong influence on the results.  
+There are MANY different distance measures (as evidenced by the 46 options in the R `philentropy::distance()` function), and choosing the most appropriate one is important, since they can have a strong influence on the results.  
 
 In some cases we may have different data types in one observational row, and different distance measures will have to be employed on each as appropriate and summed together to create a final score. 
 
@@ -32,7 +32,7 @@ Mathematically, Euclidean distance is the square root of the sum of the squared 
 
 **Manhattan**
 
-Manhattan distance measures the point-to-point travel time, and is commonly also referred to as City Block, Taxicab, or L1-Norm. 
+Manhattan distance measures the point-to-point travel time, and is also referred to as City Block, Taxicab, or L1-Norm. 
 
 ![image-center](/images/distance/manhattan.gif){: .align-right}
 
@@ -50,9 +50,9 @@ Minkowski distance adds a parameter called the “order” or *p*, that allows d
 
 **Mahalanobis**
 
-The Mahalanobis distance measure is useful when we have correlated variables, as it can take covariance into account. For example, in Euclidean space, the axes are orthogonal (drawn at right-angles), which implies a lack of correlation and means that correlated variables cannot form a Euclidean space.
+The Mahalanobis distance measure is useful when we have correlated variables, as it can take covariance into account. For example, in Euclidean space, the axes are orthogonal (drawn at right-angles), which implies a lack of correlation - therefore correlated variables cannot form a Euclidean space.
 
-More specifically, Mahalanobis distance measures the distance between a point and a distribution rather than between two distinct points. For uncorrelated variables this will equal Euclidean distance. 
+Mahalanobis distance measures the distance between a point and a distribution rather than between two distinct points. For uncorrelated variables this will equal Euclidean distance. 
 
 
 **Hamming**
@@ -87,16 +87,19 @@ Cosine similarity is often used to compare documents and in recommendation syste
 
 Jaccard distance works with sets rather than vectors. 
 
-The cardinality of a set is the number of elements contained in the set. 
+The cardinality of a set is just the number of elements contained in the set. 
 
 If we have two sets, A and B, the number of elements they have in common is the intersection $$A ∩ B$$. The total set of elements in both sets is the union $$A ∪ B$$.
 
 Jaccard similarity is the cardinality of the intersection of two sets divided by the cardinality of the union of the sets. 
 
-Jaccard similarity = $$|A ∩ B| / |A ∪ B|$$
+$$|A ∩ B|/|A ∪ B|$$
 
 For example, if set A is {cat, dog, hamster} and set B is {cat, pig, dog}:
+
 $$A ∩ B$$ = 2
+
 $$A ∪ B$$ = 4
+
 The Jaccard similarity is 2/4 = 1/2
 
