@@ -4,13 +4,13 @@ date: 2020-06-20
 tags: [machine learning, statistics]
 header: 
   image: "/images/multicollinearity/heatmap.png"
-excerpt: "Why Statisticians Care and ML Folks Don’t (but maybe should)."
+excerpt: "Why statisticians care about it and ML folks don’t (but maybe should)."
 mathjax: "true"
 ---
 
 ## What I Learned: How Multicollinearity Is and Isn't Important for ML
 
-As someone coming from a more traditional quantitative methods/statistics background, multicollinearity is often something that occurs to me as potentially hazardous when building models. But I’ve noticed that this issue is often ignored in machine learning, so I wanted to get a bit clearer about why.
+As someone coming from a more traditional quantitative methods/statistics background, multicollinearity is often something that occurs to me as potentially hazardous when building models. I’ve noticed that this issue is often ignored in machine learning, so I wanted to get a bit clearer about why.
 
 **What is multicollinearity, and why do statisticians care about it so much?**
 
@@ -34,13 +34,13 @@ Also, many ML algorithms overcome the problem of multicollinearity on their own 
 
 Personally, I find modeling without any attention to causal inference quite unsatisfying. While we may be able to make good predictions, a prediction alone is not sufficient for creating actionable analyses in many cases. And multicollinearity can make interpreting the features challenging, even when using models that are robust when predicting.
 
-For example, there’s the phenomenon of “correlation bias” in the field of XAI/interpretable machine learning. If we were to use SHAP on a model that was trained on collinear features, these features may be given an importance score of zero. If we gave the model a group of highly-correlated features, we would expect them to receive equal importance scores. But SHAP explains the model, rather than the data - and the model may choose one feature to randomly assign all of the importance to while ignoring the others entirely, as mentioned above.
+For example, there’s the phenomenon of “correlation bias” in the field of XAI/interpretable machine learning. If we were to use SHAP on a model that was trained on collinear features, these features may be given an importance score of zero. If we have a group of highly-correlated features, we would expect them to receive equal importance scores. But SHAP explains the model, rather than the data - and the model may choose one feature to randomly assign all of the importance to while ignoring the others entirely, as mentioned above.
 
 
 **How can multicollinearity be avoided?**
 
 So, if we decide we do care about interpreting features, what can we do to avoid multicollinearity? Well, first we need to identify the collinear features. This is most commonly done using VIF (Variance Inflation Factors). 
-VIFs are calculated for each predictor using a linear regression of that predictor and all the other predictors. The VIF uses the resulting R2:
+VIFs are calculated for each predictor using a linear regression of that predictor and all the other predictors. The VIF uses the resulting $$R^2$$:
 
 $$ VIF = 1/(1-R^2) $$
 
@@ -48,8 +48,8 @@ This value tells us by how much the variance of a coefficient is “inflated” 
 
 VIF values start at 1 and have no upper bound. Some folks are cautious about VIFs over 5, some people over 10. 
 
-As an alternative, a simple heatmap can frequently be a simple first step to identifying highly-correlated features.
+As an alternative, a simple heatmap can frequently be an easy first step to identifying highly-correlated features.
 Once we know which features are potentially collinear, we can use domain knowledge to either:
 
 1. Feature engineer a new feature that combines the separate collinear variables into one, or 
-2. Simply drop the one that is less theoretically important, or less strongly correlated with the target variable.
+2. Simply drop the variable that is less theoretically important, or less strongly correlated with the target variable.
