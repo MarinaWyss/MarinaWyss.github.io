@@ -32,9 +32,9 @@ Also, many ML algorithms overcome the problem of multicollinearity on their own 
 
 **But what about IML?**
 
-Personally, I find modeling without any attention to causal inference quite unsatisfying. While we may be able to make good predictions, a prediction alone is not sufficient for creating actionable analyses in many cases. And multicollinearity can make interpreting the features challenging, even when using models that are robust when predicting.
+Personally, I find modeling without any attention to causal effects quite unsatisfying. While we may be able to make good predictions, a prediction alone is not sufficient for creating actionable analyses in many cases. And multicollinearity can make interpreting the features challenging, even when using models that are robust for prediction.
 
-For example, there’s the phenomenon of “correlation bias” in the field of XAI/interpretable machine learning. If we were to use SHAP on a model that was trained on collinear features, these features may be given an importance score of zero. If we have a group of highly-correlated features, we would expect them to receive equal importance scores. But SHAP explains the model, rather than the data - and the model may choose one feature to randomly assign all of the importance to while ignoring the others entirely, as mentioned above.
+For example, there’s the phenomenon of “correlation bias” in the field of XAI/interpretable machine learning. To illustrate, if we have a group of highly-correlated features, we would probably expect them to receive equal importance scores. But if we were to use SHAP on a model that was trained on collinear features, these features may be given an importance score of zero. This is because SHAP explains the model, rather than the data - and the model may choose one feature to randomly assign all of the importance to while ignoring the others entirely, as mentioned above. Similarly, LIME uses a local linear model with a lasso penalty to explain predictions, which means that it will arbitrarily picks only one of the collinear features.
 
 
 **How can multicollinearity be avoided?**
@@ -49,7 +49,8 @@ This value tells us by how much the variance of a coefficient is “inflated” 
 VIF values start at 1 and have no upper bound. Some folks are cautious about VIFs over 5, some people over 10. 
 
 As an alternative, a simple heatmap can frequently be an easy first step to identifying highly-correlated features.
-Once we know which features are potentially collinear, we can use domain knowledge to either:
+Once we know which features are potentially collinear, we can use domain knowledge to:
 
-1. Feature engineer a new feature that combines the separate collinear variables into one, or 
-2. Simply drop the variable that is less theoretically important, or less strongly correlated with the target variable.
+1. Feature engineer a new feature that combines the separate collinear variables into one 
+2. Use PCA
+3. Simply drop the variable that is less theoretically important, or less strongly correlated with the target variable
