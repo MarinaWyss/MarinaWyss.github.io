@@ -1,6 +1,6 @@
 ---
 title: "Bayes Basics"
-date: 2020-05-10
+date: 2020-06-21
 tags: [bayesian, statistics, probability]
 header: 
   image: "/images/bayes-mcmc-stan/bayes_header.jpg"
