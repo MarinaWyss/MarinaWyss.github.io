@@ -94,7 +94,7 @@ FOREIGN KEY references a PRIMARYKEY from another table. Convention is to name FO
 ```sql
 CREATE TABLE users
 (
-	id INT NOT NOT AUTO_INCREMENT,
+	id INT NOT NULL AUTO_INCREMENT,
 	username VARCHAR(100) UNIQUE,
 	age INT,
 	PRIMARY KEY (id)
@@ -102,7 +102,7 @@ CREATE TABLE users
 
 CREATE TABLE posts
 (
-	id INT NOT NOT AUTO_INCREMENT,
+	id INT NOT NULL AUTO_INCREMENT,
 	user_id INT,
 	PRIMARY KEY (id)
 	FOREIGN KEY (user_id) REFERENCES users(id)
@@ -113,7 +113,7 @@ CREATE TABLE posts
 -- when we create our FOREIGN KEY
 CREATE TABLE posts
 (
-	id INT NOT NOT AUTO_INCREMENT,
+	id INT NOT NULL AUTO_INCREMENT,
 	user_id INT,
 	PRIMARY KEY (id)
 	FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
