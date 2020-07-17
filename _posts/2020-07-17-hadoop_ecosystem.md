@@ -3,7 +3,7 @@ title: "The Hadoop Ecosystem"
 date: 2020-07-17
 tags: [distributed computing]
 header: 
-  image: "/images/hadoop/ecosystem.jpg"
+  image: "/images/hadoop/hadoop.png"
 excerpt: "A little bit about a lot of Big Data concepts."
 ---
 
@@ -30,11 +30,11 @@ There are tons of tools and applications that are part of the Hadoop ecosystem t
 
 ## HDFS
 
-The Hadoop Distributed File System (HDFS) is the primary data storage system used by Hadoop applications. It allows for the storage of very big files by breaking them up into “blocks,” which can be stored across one or more machines in a cluster. This also makes parallel processing quite efficient.
+The Hadoop Distributed File System (HDFS) is the primary data storage system used by Hadoop applications. It allows for the storage of very big files by breaking them up into “blocks” which can be stored across one or more machines in a cluster. This also makes parallel processing quite efficient.
 
 Copies of the blocks are stored as a security feature. Because of this redundancy, Hadoop is able to make use of less expensive commodity hardware. 
 
-HDFS uses a master/slave architecture, where each Hadoop cluster consists of a single NameNode that manages the file system operations (like keeping tracking of where the data blocks live, and maintaining edit logs of what is created, modified, or stored), and several supporting DataNodes. The DataNodes manage the data stored on the individual compute nodes, and are what the client application talks to when it queries the NameNode for some piece of information. The DataNodes also communicate between each other. 
+HDFS uses a master/slave architecture, where each cluster consists of a single NameNode that manages the file system operations (like keeping tracking of where the data blocks live, and maintaining edit logs of what is created, modified, or stored), and several supporting DataNodes. The DataNodes manage the data stored on the individual compute nodes, and are what the client application talks to when it queries the NameNode for some piece of information. The DataNodes also communicate between each other. 
 
 While only one NameNode can be active at a given time, it is possible for there to be a backup node that also has access to an edit log in case the first node has a failure. Alternatively, HDFS Federation allows for NameNodes per subdirectory, which is important if storing many smaller files (since HDFS is really optimized for fewer larger files). A final option is HDFS High Availability, which constantly maintains a hot standby NameNode with a shared edit log to avoid any downtime if the first NameNode goes down. 
 
@@ -52,7 +52,7 @@ It is also possible to use other resource negotiator tools instead of YARN altog
 
 ## MapReduce
 
-MapReduce allows for the distributed processing of data on a cluster. It facilitates concurrent processing by splitting large amounts of data into smaller chunks, and processing them in parallel on the Hadoop servers. In the end, it aggregates all the data from multiple servers to return a consolidated output back to the application. With MapReduce, rather than sending data to where the application or logic resides, the logic is executed on the server where the data already resides, to expedite processing
+MapReduce allows for the distributed processing of data on a cluster. It facilitates concurrent processing by splitting large amounts of data into smaller chunks, and processing them in parallel on the Hadoop servers. In the end, it aggregates all the data from multiple servers to return a consolidated output back to the application. With MapReduce, rather than sending data to where the application or logic resides, the logic is executed on the server where the data already resides to expedite processing
 
 To do this, a **mapper** first converts data into key:value pairs. For example, say we are interested in how many movies a particular user on a website has rated. If the user id was 2, and they rated movie id 34, the key value pair would be 2:34. MapReduce then sorts and groups values using “shuffle and sort,” which means that it looks at individual key value pairs and maps all the values for each unique key, resulting in one key and a list of all related values. So, if user 2 rated four movies with movie ids 34, 56, 708, and 25, the final result would be: 2: 34, 56, 708, 25.
 
@@ -60,7 +60,7 @@ Given the output from shuffle and sort, the **reducer** step aggregates the data
 
 These processes may take place across multiple computers or processors: it is possible to split up the mapping and re-sort using a merge sort during the shuffle and sort process, and multiple reducers may take responsibility for different sets of keys. This coordination is handled through YARN. 
 
-MapReduce problems can be written in raw MapReduce code, SQL, or by using streaming to write in a language like Python. 
+MapReduce problems can be written in MapReduce directly, with SQL, or by using streaming to write in a language like Python. 
 
 Another example: Count how many of each star ratings (1 through 4) exist in a dataset:
 
@@ -104,13 +104,15 @@ metadata = LOAD ‘data/metadata.data’ USING PigStorage(‘|’)
 
 -- convert metadata into new relation with a timestamp
 -- for each row in metadata, generate a row with the columns from the first and the new col.
-nameLookup = FOREACH metadata GENERATE movieID, movieTitle, ToUnixTime(ToDate(releaseDate, ‘dd-MMM-yyyy’)) AS releaseTime;
+nameLookup = FOREACH metadata GENERATE movieID, movieTitle, 
+    ToUnixTime(ToDate(releaseDate, ‘dd-MMM-yyyy’)) AS releaseTime;
 
 -- gather all ratings into a tuple by movieID
 ratingsByMovie = GROUP ratings BY movieID;
 
 -- go through the ratingsByMovie relation and generate an avg. rating per movie from the rating relation rating field 
-avgRating = FOREACH ratingByMovie GENERATE group AS movieID, AVG(ratings.rating) AS avgRating;
+avgRating = FOREACH ratingByMovie GENERATE group AS movieID, 
+    AVG(ratings.rating) AS avgRating;
 
 -- filter for only movies with an average rating above 4
 fiveStarMovies = FILTER avgRatings BY avgRating > 4.0;
@@ -213,7 +215,7 @@ This is just barely touching the surface even of the general principles - I’ll
 
 #### Zeppelin
 
-Side note: Zeppelin is a notebook interface to Big Data that can interactively run scripts. It has tight integration with Spark, and can also include markdown, SQL, shell commands, etc. The built-in visualization tools are also a nice touch.
+Zeppelin is a notebook interface to Big Data that can interactively run scripts. It has tight integration with Spark, and can also include markdown, SQL, shell commands, etc. The built-in visualization tools are also a nice touch.
 
 
 ## Building an Ecosystem
