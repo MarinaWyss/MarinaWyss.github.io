@@ -19,7 +19,7 @@ Throughout my time working in quantitative methods, probability distributions ha
 
 In a Bernoulli distribution there is only a single trial with two possible outcomes: 1 (success) or 0 (failure). The probability of success is the same in each trial, and is independent of all other trials. 
 
-If a random variable $$X$$ has a Bernoulli distribution it will take the value 1 with the probability of success, $p$, and the value 0 with the probability of failure, $$1 - p$$. The probabilities for success and failure do not need to be equally likely. For example, imagine a single toss of a (possibly unfair) coin.
+If a random variable $$X$$ has a Bernoulli distribution it will take the value 1 with the probability of success, $$p$$, and the value 0 with the probability of failure, $$1 - p$$. The probabilities for success and failure do not need to be equally likely. For example, imagine a single toss of a (possibly unfair) coin.
 
 
 ### Uniform
@@ -36,7 +36,7 @@ Binomial distributions can be thought of as the sum of the outcomes of events th
 
 ### Geometric
 
-If the binomial distribution answers the question of how many successes there were, the geometric distribution answers the question of how many failures there were until a success. For example, how many times does a flipped coin come up tails *before* it comes up heads? It is also parameterized by $$p$$, the probability of that final success, but not by $n$, the number of trials, since this is a part of the outcome itself.
+If the binomial distribution answers the question of how many successes there were, the geometric distribution answers the question of how many failures there were until a success. For example, how many times does a flipped coin come up tails *before* it comes up heads? It is also parameterized by $$p$$, the probability of that final success, but not by $$n$$, the number of trials, since this is a part of the outcome itself.
 
 As a concrete example, with a fair coin there is a 50% chance that the first success will occur on the first flip, a 25% chance that it will occur on the second flip, and a 12.5% chance that it will occur on the third flip. The curve flattens out as the probability decreases, but will always be right-skewed.
 
