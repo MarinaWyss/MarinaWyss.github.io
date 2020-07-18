@@ -4,7 +4,7 @@ date: 2020-06-21
 tags: [bayesian, statistics, probability]
 header: 
   image: "/images/bayes-mcmc-stan/bayes_header.jpg"
-excerpt: "MCMC and modeling in Stan"
+excerpt: "Intuition, MCMC, and modeling in Stan."
 mathjax: "true"
 ---
 

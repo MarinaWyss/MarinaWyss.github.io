@@ -2,7 +2,7 @@
 title: "Temporal Tables in MariaDB"
 date: 2020-07-14
 tags: [sql]
-excerpt: "A nifty way to easily handle system-version tables."
+excerpt: "A nifty way to easily handle system-versioned tables."
 ---
 
 # What I Learned: All about temporal tables
