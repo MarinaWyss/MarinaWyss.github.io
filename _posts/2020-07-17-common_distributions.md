@@ -3,7 +3,7 @@ title: "Common Probability Distributions"
 date: 2020-07-17
 tags: [probability]
 mathjax: "true"
-excerpt: "A conceptual look at 15 of common probability distributions."
+excerpt: "A conceptual look at 15 common probability distributions."
 ---
 
 ![image-center](/images/distributions/distributions.png){: .align-center}
