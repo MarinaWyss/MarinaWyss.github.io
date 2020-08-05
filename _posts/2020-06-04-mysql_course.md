@@ -221,7 +221,7 @@ LIMIT
 SELECT col
 FROM table_name
 ORDER BY col
-LIMIT 2, 10 for entries 2 to 10
+LIMIT 2, 10 -- for entries 2 to 10
 
 -- can use bigger end number to grab just one:
 SELECT col
@@ -492,7 +492,7 @@ FROM table_name;
 
 * One:One relationships - 1 customer table and 1 customer details table.
 * One:Many - 1 customer table, 1 order table (where one customer may have multiple orders).
-* Many:Many relationships - An authors table and a books, where books can have any authors and authors can have many books.
+* Many:Many relationships - An authors table and a books, where books can have many authors and authors can have many books.
 
 
 **Joins**
@@ -569,7 +569,7 @@ RENAME TO new_view_name;
 
 SQL triggers specify code that is automatically run when a specific table is changed ("triggered" by certain events). For example, we could use a trigger to validate data like minimum age before inserting new data into a users table. 
 
-Triggers are somewhat controversial, since these checks may be better suited to web app code, and they can make debugging challening. 
+Triggers are somewhat controversial, since these checks may be better suited to web app code, and they can make debugging challenging. 
 
 ```sql
 -- basic syntax
