@@ -4,15 +4,15 @@ date: 2020-11-29
 tags: [machine learning, mathematics]
 header: 
   image: "/images/linear_algebra/linear_algebra.png"
-excerpt: “Fundamental building blocks and applications”
-mathjax: “true”
+excerpt: "Fundamental building blocks and applications."
+mathjax: "true"
 ---
 
-Recently I’ve been interested in going back to basics and working on getting a deeper understanding of the mathematical foundations behind machine learning and deep learning. To that end, I recently completed the [Mathematics for Machine Learning: Linear Algebra](https://www.coursera.org/learn/linear-algebra-machine-learning/) course from Coursera, which I supplemented with some excellent linear algebra content from [3blue1brown](https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab).
+Recently, I’ve been interested in going back to basics and working on getting a deeper understanding of the mathematical foundations behind machine learning and deep learning. To that end, I recently completed the [Mathematics for Machine Learning: Linear Algebra](https://www.coursera.org/learn/linear-algebra-machine-learning/) course from Coursera, which I supplemented with some excellent linear algebra content from [3blue1brown](https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab).
 
-The aim of this blog is to help me solidify my knowledge on the core topics from the course and serve as a reference repository in case I happen to forget anything in the future. ;-) There were many more topics covered in more detail, of course, but these are the foundations that I want to make sure to remember moving forward.
+The aim of this blog is to help me solidify my knowledge on the core topics from the course, and serve as a reference repository in case I happen to forget anything in the future. ;-) There were many more topics covered in more detail, of course, but these are the foundations that I want to make sure to remember moving forward.
 
-So, **why Linear Algebra**? Most of the time in machine learning, data is represented in a matrix form. Understanding how mathematical operations are performed on matrices is therefore fundamental to understanding how machine learning models actually work. Some methods also draw directly on linear algebra (e.g. PCA, regularization, some recommendation systems), and understanding the math behind them is helpful for correct application, debugging, and even the development of new models.
+So, **why Linear Algebra**? Most of the time in machine learning, data are represented in a matrix form. Understanding how mathematical operations are performed on matrices is therefore fundamental to understanding how machine learning models actually work. Some methods also draw directly on linear algebra (e.g. PCA, regularization, some recommendation systems), and understanding the math behind them is helpful for correct application, debugging, and even the development of new models.
 
 
 ## Building Blocks
@@ -31,7 +31,7 @@ Vectors can be oriented either row or column-wise. In this example, both $$a$$ a
 
 ![image-center](/images/linear_algebra/row_col_vectors.png){: .align-center}
 
-The norm of a vector in vector space is a real non-negative value representing the length, size, or magnitude of the vector. There are different ways to measure this - two of the most common are:
+The *norm* of a vector in vector space is a real non-negative value representing the length, size, or magnitude of the vector. There are different ways to measure this - two of the most common are:
 
 * L2/Euclidean norm: This is the most commonly used norm, and is the cartesian distance between the vector elements.
 * L1 norm: The sum of the absolute values of the vector’s elements.
@@ -101,6 +101,7 @@ Examples in this section are largely taken from [this useful blog](https://mediu
 ![image-center](/images/linear_algebra/dot_product.png){: .align-center}
  
 If the first matrix ($$A$$) is of shape(m, n), and is multiplied with matrix $$B$$ of shape (n, p), the resulting matrix will be of shape(m, p).
+
 There are some important properties of matrix multiplication:
  
 * Not commutative: With scalars, 4 * 5 is the same as 5 * 4. This is not so with matrices, as AB does not equal BA. Multiplication by an identity matrix is an exception to this rule.
@@ -136,7 +137,7 @@ Tensors weren’t covered in the course, but given their prevalence in deep lear
 
 Tensors are essentially generalizations of matrices, with potentially any number of dimensions. A 0D tensor is a scalar, a 1D tensor is a vector, and a 2D tensor is a matrix. Past 3D, we typically just refer to tensors. The dimension of a tensor is called its **rank.** 
 
-There are also some other fancy properties of tensors related to transformations which distinguish them from general matrices. This is beyond the scope of this blog, but more info is available (here)[https://medium.com/@quantumsteinke/whats-the-difference-between-a-matrix-and-a-tensor-4505fbdc576c].
+There are also some other fancy properties of tensors related to transformations which distinguish them from general matrices. This is beyond the scope of this blog, but more info is available [here](https://medium.com/@quantumsteinke/whats-the-difference-between-a-matrix-and-a-tensor-4505fbdc576c).
 
 ![image-center](/images/linear_algebra/tensors.png){: .align-center}
 
