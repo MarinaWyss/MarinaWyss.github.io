@@ -90,7 +90,7 @@ Examples in this section are largely taken from [this useful blog](https://mediu
  
 *Matrix-Vector Multiplication*: When multiplying a matrix by a vector, we’re essentially multiplying each row of the matrix by the vector column. The output is a vector with the same number of rows as the matrix. 
 
-![image-center](/images/linear_algebra/matrix_vector_multiplication.png){: .align-center}
+![image-center](/images/linear_algebra/mat_vec_multiplication.png){: .align-center}
 
 *Matrix-Matrix Addition/Subtraction*: To add matrices, they need to have the same dimensions. All that is required for matrix addition is to add each element at the same index together:
 
