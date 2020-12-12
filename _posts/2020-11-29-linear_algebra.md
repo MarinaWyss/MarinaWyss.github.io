@@ -113,11 +113,11 @@ There are some important properties of matrix multiplication:
  
 ![image-center](/images/linear_algebra/matrix_transpose.png){: .align-center}
  
-*Matrix Inverse*: An inverse of a scalar is whatever scalar you’d need to multiply that scalar by to equal the number one. Every number except zero has such an inverse. In the case of matrices, a matrix multiplied by its inverse results in an identity matrix. Only square matrices can have inverses, and in some cases even square matrices don’t have any possible inverse (called singular or degenerate matrices). 
- 
-The inverse of a matrix can be found by flipping the terms on the diagonal, taking the minus of the off-diagonal terms, and dividing by the determinant (determinants are covered below).
- 
-This inverse is useful for solving systems of linear equations. We went through this by hand in the course, but in practice I’d likely just use numpy if it ever came up again.
+*Matrix Inverse*: An inverse of a scalar is whatever scalar you’d need to multiply that scalar by to equal the number one. Every number except zero has such an inverse. In the case of matrices, a matrix multiplied by its inverse results in an identity matrix. 
+
+Only square matrices can have inverses, and in some cases even square matrices don’t have any possible inverse (called singular or degenerate matrices). If the determinant (covered below) is zero, then the matrix isn't invertible.
+  
+The matrix inverse is useful for solving systems of linear equations. We went through calculating inverse matrices and solving systems of linear equations using Gaussian Elimination by hand in the course, but in practice I’d likely just use numpy if it ever came up again.
 
  
 **Determinants**
