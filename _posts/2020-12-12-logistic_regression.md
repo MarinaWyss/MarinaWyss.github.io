@@ -50,8 +50,8 @@ The logistic regression does assume:
 
 Understanding the distinction between odds and probabilities is critical to grasping logistic regression.
 
-* *Probability* is the ratio of something happening to everything that could happen. For example, in the sports context, the probability of the team winning could be described as $$p(team winning)/p(team losing or team winning)$$
-* Odds are the ratio of something happening to it not happening, and can be calculated either from counts or probabilities. For example, $$p(team winning)/p(team losing)$$.
+* *Probability* is the ratio of something happening to everything that could happen. For example, in the sports context, the probability of the team winning could be described as $$p(teamWinning)/p(teamLosing \text{ or } teamWinning)$$
+* Odds are the ratio of something happening to it not happening, and can be calculated either from counts or probabilities. For example, $$p(teamWinning)/p(teamLosing)$$.
 
 To illustrate further, if the probability of an event is 0.8, the odds of the event occurring are 0.8/0.2 = 4. This says that the event will occur four times for every time the event does not occur, and this event has 300% higher odds of happening than not happening.
 
@@ -108,7 +108,7 @@ This is where things get...fun!
 
 Null deviance and residual deviance are chi-squared statistics, and p-values for each can be calculated using the degrees of freedom. Comparing the [difference between them](https://www.youtube.com/watch?v=xl5dZo_BSJk&ab_channel=JeffHamrick) allows for an examination of whether the deviance is the same between the two models. 
 
-They can also be used to compute pseudo R2 ($$residual deviance/null deviance$$).
+They can also be used to compute pseudo R2 ($$residualDeviance/nullDeviance$$).
 
 ### AIC
 
