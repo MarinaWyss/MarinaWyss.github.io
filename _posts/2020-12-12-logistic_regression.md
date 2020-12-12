@@ -4,11 +4,11 @@ date: 2020-12-12
 tags: [statistics]
 header: 
   image: "/images/logistic_regression/sigmoid.png"
-excerpt: “Fun with odds, odds-ratios, and probabilities."
+excerpt: "Fun with odds, odds-ratios, and probabilities."
 mathjax: "true"
 ---
 
-Logistic regression is one of the most foundational statistical models, and also one of the most frequently misinterpreted. Which is fair, because odds-ratios aren’t exactly intuitive at first. What follows is an overview of the fundamentals of logistic regression, and how to properly interpret the model’s output.
+Logistic regression is one of the most foundational statistical models, and also one of the most frequently misinterpreted. Which is fair, because odds-ratios aren’t exactly intuitive at first. What follows is an overview of the fundamentals of logistic regression, and how to properly interpret the model output.
 
 
 ## What is logistic regression?
@@ -16,7 +16,7 @@ Logistic regression models the probability that an observation belongs to one of
 
 
 ## How is logistic regression estimated?
-In logistic regression, the y-axis is transformed from probability to *log odds* using the *logit function*: $$log(p / 1 - p)$$.
+In logistic regression, the y-axis is transformed from probability to log odds using the logit function: $$log(p / 1 - p)$$.
 
 Even though we associate logistic regression with the sigmoid, once we use the logit function the coefficients are represented as a straight line on the log odds graph, where a probability of 0 is negative infinity, a probability of 0.5 is 0, and a probability of 1 is infinity. Because of this transformation, the residuals are infinity, so we can’t use OLS to calculate the values of the coefficients.
 
@@ -50,8 +50,8 @@ The logistic regression does assume:
 
 Understanding the distinction between odds and probabilities is critical to grasping logistic regression.
 
-* *Probability* is the ratio of something happening to everything that could happen. For example, in the sports context, the probability of the team winning could be described as $$ p team winning / p team losing or team winning $$
-* Odds are the ratio of something happening to it not happening, and can be calculated either from counts or probabilities. For example, $$ p team winning / p team losing $$.
+* *Probability* is the ratio of something happening to everything that could happen. For example, in the sports context, the probability of the team winning could be described as $$p(team winning)/p(team losing or team winning)$$
+* Odds are the ratio of something happening to it not happening, and can be calculated either from counts or probabilities. For example, $$p(team winning)/p(team losing)$$.
 
 To illustrate further, if the probability of an event is 0.8, the odds of the event occurring are 0.8/0.2 = 4. This says that the event will occur four times for every time the event does not occur, and this event has 300% higher odds of happening than not happening.
 
@@ -60,7 +60,7 @@ To convert odds to probabilities, the formula is simply $$ odds / (1 + odds) $$.
 
 The relationship between odds and probabilities can be a bit tricky, so here are some more examples: 
 
-* A proportion of 50% corresponds to an odds ratio of 1/1, because 50% accuracy means there is one loss for each win. 
+* A proportion of 50% corresponds to an odds ratio of 1/1, since there is one loss for each win. 
 * A proportion of 33%, on the other hand, corresponds to an odds ratio of 1/2 (two losses every one win).
 * A proportion of 75% corresponds to an odds ratio of 3/1, etc.
 
@@ -75,7 +75,7 @@ This simple overview won’t go in depth on every element, but intends to only s
 
 ### Deviance residuals
 
-While we do have residuals in logistic regression, they aren’t very useful since they don’t emanate from some sort of principle of least-squares minimization. Because we fit logistic regression with MLE, it’s better to look at something that looks at the log-likelihood function. 
+While we do have residuals in logistic regression, they aren’t very useful since they don’t come from some sort of principle of least-squares minimization. Because we fit logistic regression with MLE, it’s better to look at something that considers the log-likelihood function. 
 
 The deviance residual associated with an observation is the observation’s value evaluated under the log likelihood function, multiplied by -2. It essentially measures how well an observation fits the model (the closer to zero, the better the fit of the observation). 
 
@@ -85,16 +85,16 @@ Deviance residuals should have properties similar to “normal” residuals. For
 
 This is where things get...fun!
 
-* The intercept is the log(odds) of the outcome when all the independent variables are 0. 
+* The **intercept** is the log(odds) of the outcome when all the independent variables are 0. 
 * **Continuous coefficients** are the increase in the log(odds) for every one unit increase in $$X$$, holding the other coefficients constant. If we exponentiate this, we get an odds-ratio for an increase of one unit. To convert to probabilities, we use $$exp(coef)/(1 + exp(coef))$$. 
     * But **be careful here!** The relationship between odds and probabilities is non-linear, and depends on the starting point. For example, 3% lower *odds* of passing a test is the same whether the test score is low, medium, or high. The difference in the *probability* of passing is **not** the same at those test scores, though: it’s bigger in the middle than at the ends because the relationship between the test score and the probability of passing isn’t linear, it’s sigmoidal, since increasing a test score by say, 2 points, has a very small effect for people whose scores are very low or very high, and a much larger effect for people whose scores are in the middle.
     * We can make predicted probabilities more intuitive by plugging in some plausible values for $$X$$, and plotting them to see how the probabilities change with different values for the independent variables.
     * Alternatively, we can calculate risk ratios (RR), which are probability ratios: $$ OR / (1 – p + (p x OR))$$ where $$p$$ is the risk in the control group. A RR of 3 means the risk of an outcome is increased threefold.  A RR of 0.5 means the risk is cut in half.  But an OR of 3 doesn’t mean the risk is threefold; rather the odds are threefold greater. The OR will always be an overestimate compared to the RR. The RR and OR will be similar for rare outcomes, < 10%.  But the OR increasingly overestimates RR as outcomes exceed 10%.
-* **Categorical coefficients** are the log(odds ratio) of a reference and comparison category (e.g. reference is female observations, comparison is male). This says, on the log scale, how much being in the comparison class increases or decreases the odds of the outcome relative to the reference category. For example, if we exponentiate an odds ratio with men as the comparison and women as the reference category, and get 2.04, we can say that men have 104% higher odds of an outcome than women do -- say, failing a test.
+* **Categorical coefficients** are the log(odds ratio) of a reference and comparison category (e.g. reference is female observations, comparison is male). This says, on the log scale, how much being in the comparison class increases or decreases the odds of the outcome relative to the reference category. For example, if we exponentiate an odds ratio with men as the comparison and women as the reference category, and get 2.04, we can say that men have 104% higher odds of an outcome than women do.
 * **Interaction terms** can also be kind of tricky, and the interpretation depends on the type of interaction:
     * Two categorical variables: The difference between two log-odds ratios.
-    * One continuous, one categorical: The difference between the log-odds ratios for group1 vs. group2 in two homogenous groups that differ only by one unit (for example, men and women ages 20 and 21).
-    * Two continuous: The difference in the log-odds ratios for two groups, each of which differs by one unit (for example, income level 10 and income level 11, and age 20 and age 21).
+    * One continuous, one categorical: The difference between the log-odds ratios for two homogenous groups that differ only by one unit (for example, men and women ages 20 and 21).
+    * Two continuous: The difference in the log-odds ratios for two groups, each of which differs by one unit (for example, grade level 10 and grade level 11, and age 20 and age 21).
 * The Z-score is the coefficient divided by the standard error, or how far away it is from zero in the standard normal curve.
 * The p-value is determined by the Wald’s test (in R at least). It determines if the comparison category is statistically significantly different from the reference category. An important note about p-values in logistic regression is that they are dependent on what is used as the reference category, and may change if this is adjusted in the model. 
 
@@ -108,7 +108,7 @@ This is where things get...fun!
 
 Null deviance and residual deviance are chi-squared statistics, and p-values for each can be calculated using the degrees of freedom. Comparing the [difference between them](https://www.youtube.com/watch?v=xl5dZo_BSJk&ab_channel=JeffHamrick) allows for an examination of whether the deviance is the same between the two models. 
 
-They can also be used to compute pseudo R2 ($$residual deviance / null deviance$$).
+They can also be used to compute pseudo R2 ($$residual deviance/null deviance$$).
 
 ### AIC
 
