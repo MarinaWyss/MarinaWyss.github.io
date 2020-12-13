@@ -135,7 +135,7 @@ When the basis vectors (see below!) describing a matrix are not linearly indepen
 
 Tensors weren’t covered in the course, but given their prevalence in deep learning applications, I thought it would be worthwhile to address them briefly as well.
 
-Tensors are essentially generalizations of matrices, with potentially any number of dimensions. A 0D tensor is a scalar, a 1D tensor is a vector, and a 2D tensor is a matrix. Past 3D, we typically just refer to tensors. The dimension of a tensor is called its **rank.** 
+Tensors are essentially generalizations of matrices, with potentially any number of dimensions. A 0D tensor is a scalar, a 1D tensor is a vector, and a 2D tensor is a matrix. Past 3D, we typically just refer to tensors.
 
 There are also some other fancy properties of tensors related to transformations which distinguish them from general matrices. This is beyond the scope of this blog, but more info is available [here](https://medium.com/@quantumsteinke/whats-the-difference-between-a-matrix-and-a-tensor-4505fbdc576c).
 
