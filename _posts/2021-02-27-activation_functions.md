@@ -39,7 +39,7 @@ There are many possible choices of activation functions for hidden layers. Some 
 
 Old school neural networks typically relied heavily on the Sigmoid activation function. Using the following formula, the Sigmoid function takes any real value as input, and outputs values in the range 0 to 1. 
 
-$$ 1.0 / (1.0 + e^(-x)) $$
+$$ 1.0 / (1.0 + e^{-x}) $$
 
 The larger the input (more positive), the closer the output value will be to 1.0, whereas the smaller the input (more negative), the closer the output will be to 0.0.
 
@@ -55,7 +55,7 @@ This results in a smooth gradient, with clear predictions. However, the outputs 
 
 The Tanh function is basically the same as the sigmoid, except shifted to the range of -1 to 1, calculated as follows:
 
-$$ (e^x – e^(-x)) / (e^x + e^(-x)) $$
+$$ (e^x – e^{-x} / (e^x + e^{-x} $$
 
 This has the benefit of centering the data around zero, making learning easier for future layers. 
 
