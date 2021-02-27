@@ -6,6 +6,8 @@ excerpt: "Why everyone loves ReLU so much."
 mathjax: "true"
 ---
 
+![image-center](/images/activation_functions/relu_meme.png){: .align-center}
+
 *Image [source](https://www.pinterest.com/pin/779052435520752328/feedback/?invite_code=25efb01393b64c8e87281db0f615950e&sender_id=402298316622278571)*
 
 I’ve recently started volunteering with [DataKind SF](https://www.datakind.org/chapters/datakind-sf), and will be working on a computer vision project for an organization that wants to use satellite imagery to locate poor households in need of water subsidies. Since I haven’t worked with image data before, I wanted to take a few weeks to prepare by improving my deep learning skills, and learning more about visual feature extraction and image classification. So, I’ve been working through the [deeplearning.ai Deep Learning Specialization on Coursera](https://www.coursera.org/specializations/deep-learning). 
@@ -28,7 +30,7 @@ During training, the model compares the real target value to the predicted value
 
 ## Activation Functions for Hidden Layers
 
-There are many possible choices of activation functions for hidden layers. Some of the most common include sigmoid, hyperbolic tangent (tanh), and ReLU. 
+There are many possible choices of activation functions for hidden layers. Some of the most common include Sigmoid, hyperbolic tangent (Tanh), and ReLU. 
 
 *Note: The activation function plots in this blog are all taken from [this page](https://www.analyticsvidhya.com/blog/2020/01/fundamentals-deep-learning-activation-functions-when-to-use-them/)*
 
@@ -37,7 +39,7 @@ There are many possible choices of activation functions for hidden layers. Some 
 
 Old school neural networks typically relied heavily on the Sigmoid activation function. Using the following formula, the Sigmoid function takes any real value as input, and outputs values in the range 0 to 1. 
 
-$$ 1.0 / (1.0 + e^-x) $$
+$$ 1.0 / (1.0 + e^(-x)) $$
 
 The larger the input (more positive), the closer the output value will be to 1.0, whereas the smaller the input (more negative), the closer the output will be to 0.0.
 
@@ -53,11 +55,11 @@ This results in a smooth gradient, with clear predictions. However, the outputs 
 
 The Tanh function is basically the same as the sigmoid, except shifted to the range of -1 to 1, calculated as follows:
 
-$$ (e^x – e^-x) / (e^x + e^-x) $$
+$$ (e^x – e^(-x)) / (e^x + e^(-x)) $$
 
 This has the benefit of centering the data around zero, making learning easier for future layers. 
 
-![image-center](/images/tanh/sigmoid.png){: .align-center}
+![image-center](/images/activation_functions/tanh.png){: .align-center}
 
 However, Tanh also suffers from the same efficiency problems as the sigmoid function.
 
@@ -78,7 +80,7 @@ ReLU has several advantages:
 
 However, one must be wary of the (somewhat dramatically-named) Dying ReLU problem: If large weight updates result in the summed input to the activation always being negative, the node will always output zero, so the network cannot perform backprop and learn. 
 
-The *Leaky ReLU* attempts to overcome this by using a slight positive slope (a tunable hyperparameter) for negative values. The challenge with this is that the predictions are not consistent for negative input values.
+The **Leaky ReLU** attempts to overcome this by using a slight positive slope (a tunable hyperparameter) for negative values. The challenge with this is that the predictions are not consistent for negative input values.
 
 Generally speaking, ReLU is the most-commonly used activation function for hidden units, particularly in MLP or CNN models, though RNNs still commonly use Tanh or Sigmoid. There are also plenty of other new and fancier options that can be explored if these more common activation functions prove unsuccessful (like Google’s Swish).
 
