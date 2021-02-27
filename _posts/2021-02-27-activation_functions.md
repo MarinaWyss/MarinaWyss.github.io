@@ -55,7 +55,7 @@ This results in a smooth gradient, with clear predictions. However, the outputs 
 
 The Tanh function is basically the same as the sigmoid, except shifted to the range of -1 to 1, calculated as follows:
 
-$$ (e^x – e^{-x} / (e^x + e^{-x} $$
+$$ (e^x – e^{-x}) / (e^x + e^{-x}) $$
 
 This has the benefit of centering the data around zero, making learning easier for future layers. 
 
