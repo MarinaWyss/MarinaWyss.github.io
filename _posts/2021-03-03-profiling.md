@@ -1,7 +1,7 @@
 ---
 title: "Profiling Python Code"
 date: 2021-03-03
-tags: [python, computer science]
+tags: [python]
 excerpt: "Fixing slow code."
 ---
 
