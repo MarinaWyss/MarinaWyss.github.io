@@ -30,6 +30,13 @@ Generally, input variables should be small values (ideally between 0-1) with a l
 The output variable should match the scale of the activation function of the output layer.
 
 
+### Target Distribution
+
+I have learned that hard way that having a very different distribution for the train and test targets can be a major issue. This can be a particularly pronounced problem when limited data is available (so there isn't enough for a robust train-val-test split).
+
+Rather than simply shuffling the dataset, a better alternative is to make the val/test sets come from the target distribution dataset, and the training set from the full dataset. This allows one to optimize for the target distribution, which is what we ultimately care about. See [this blog](https://www.freecodecamp.org/news/what-to-do-when-your-training-and-testing-data-come-from-different-distributions-d89674c6ecd8/) for a good summary of the problem.
+
+
 ### Parameter Initialization
 
 If the weights are initialized to all zeros, this results in the network “failing to break symmetry.”  Basically, every neuron in each layer learns the same thing. Note that the bias can actually be safely initialized to zero.
@@ -50,6 +57,7 @@ Some kinds of neural networks perform better on certain tasks than others. As a 
 * MLP: Simple tasks
 * CNN: Images, video, and text classification
 * RNN: Data in a sequence (like translations or audio)
+* GNN: Problems that can be conceptualized as a graph (that's a lot of things!)
 * Autoencoder: Data compression
 
 [This blog](https://towardsdatascience.com/the-mostly-complete-chart-of-neural-networks-explained-3fb6f2367464) has a lot of detail about a good number of different potential neural network types.
@@ -136,6 +144,13 @@ Dropout is a common regularization technique in deep learning, and essentially j
 Using dropout means that the model trained is slightly different on each iteration, making the weights reluctant to put too much emphasis on any single input. The weights spread out, and thus reduce overfitting.
 
 Note that a challenge with using dropout is that the cost function is no longer well-defined, which is a problem when plotting the loss for debugging. However, this is easily fixed by temporarily removing dropout for debugging.
+
+
+### Batch Normalization
+
+Training deep neural networks with many layers is challenging, since they can be sensitive to the initial random weights and configuration of the learning algorithm. One reason is that the distribution of the inputs to layers deep in the network may change after each mini-batch when the weights are updated, so the learning algorithm is forever chasing a moving target (called "internal covariate shift").
+
+Normalization is, of course, the process of transforming the data to have mean zero and standard deviation of one. With batch normalization, the inputs of each layer are standardized for each mini-batch right before or after the non-linear activation function, which stabilizes the learning process and leads to faster training and less over-fitting.
 
 
 ### Data Augmentation
