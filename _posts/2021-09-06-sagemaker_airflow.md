@@ -8,7 +8,7 @@ I’ve spent the last few weeks at work building a new model to predict which sk
 
 The new model is productionized using Airflow and Sagemaker. I was already familiar with Airflow and online Sagemaker endpoints, but this was my first experience working with Sagemaker Batch Transform.
 
-The pipeline is broken up into two steps: training, which happens weekly, and inference, which takes place daily (in case there is any new content). Each has their own Airflow DAG.
+The pipeline is broken up into two steps: training (which happens weekly), and inference (which takes place daily, in case there is any new content). Each has their own Airflow DAG.
 
 
 The training pipeline:
