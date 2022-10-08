@@ -66,7 +66,7 @@ However, Tanh also suffers from the same efficiency problems as the sigmoid func
 
 ### ReLU
 
-The rectified linear activation function is a simple calculation that returns the value provided as input directly, or zero if the input is negative.
+The "rectified linear unit" activation function is a simple calculation that returns the value provided as input directly, or zero if the input is negative.
 
 $$ max(0, x) $$
 
@@ -75,6 +75,7 @@ ReLU has several advantages:
 * It overcomes the vanishing gradient problem, since the function provides more  sensitivity to the activation sum input and avoids easy saturation --  the gradients remain proportional to the node activations.
 * It is easy to implement, requiring only a max() function.
 * It is capable of outputting a true zero value, unlike Tanh and Sigmoid which approximate a zero output with values close-to-but-not-exactly zero. When hidden layers contain true zeros this sparse representation can accelerate learning and simplify the model.
+* It is good for cases where we don't want the output to ever be negative (e.g. housing prices).
 
 ![image-center](/images/activation_functions/relu.png){: .align-center}
 

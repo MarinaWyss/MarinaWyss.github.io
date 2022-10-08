@@ -91,7 +91,8 @@ I covered basic *gradient descent* in [this blog](https://marinawyss.github.io/c
 
 *RMSProp* is another option to speed up horizontal learning and slow down vertical learning. It’s essentially the same idea as momentum, except we take a square before the exponentially-weighted average, and update the parameters slightly differently.
 
-*Adam* uses a combination of momentum, RMSProp, and bias correction, and is everyone’s favorite optimizer right now. It converges quickly, but is computationally costly.
+*Adam (Adaptive Moment Estimation)* uses a combination of momentum, RMSProp, and bias correction, and is everyone’s favorite optimizer right now. It converges quickly, but is computationally costly. Basically, Adam notices if the steps are going in the same direction towards the minimum, and increases the learning rate if so (and vice versa, decreasing the learning rate if it notices the algorith jumping all across the cost function). This automatic learning rate adjustment is done separately for every parameter of the model.
+
 
 
 ## Additional Hyperparameters
