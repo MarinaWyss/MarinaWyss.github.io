@@ -7,7 +7,7 @@ header:
 excerpt: "An MLOps Project for the ZenML Month of MLOps Competition."
 ---
 
-# An MLOps Pipeline to Answer the Important Questions
+## An MLOps Pipeline to Answer the Important Questions
 
 Sometimes it is hard to know if you are a cat or not. The goal of this project is to use deep learning to help with that.
 
@@ -17,11 +17,11 @@ J/K. It's really about me practicing some MLOps and deep learning stuff. There's
 
 This project uses [ZenML](https://zenml.io/home) to build a simple end-to-end pipeline for a model to identify if a photo (selfie) uploaded to a Streamlit app is of a cat or not. The Github repo for the project is [here](https://github.com/MarinaWyss/are-you-a-cat).
 
-## Training Pipeline
+### Training Pipeline
 
 The training pipeline is pretty simple: Clean the data, train the model, and evaluate model performance on the test set.
 
-### Data
+#### Data
 
 Training data for this project comes from the following datasets:
 - [Cats and dogs](https://github.com/rpeden/cat-or-not/releases)
@@ -32,39 +32,39 @@ I'm using a random sample from each of the above. For training, I used 25% cat i
 
 Data prep is simple: The images are reshaped and normalized. That's it for now!
 
-### Data Validation
+#### Data Validation
 
 Data validation for the training and testing data is done with [Deep Checks](https://deepchecks.com/). There is not currently a ZenML integration for non-tabular data, so this step is not integrated into the pipeline, but can be run ad-hoc via `run_data_validation.py`. The validation report is saved to the `data/` directory. 
 
-### Model
+#### Model
 
 The model for this project is a 2D CNN, implemented with Tensorflow Keras. The model, hyperparameters, and training metrics are saved using MLflow autologging as experiment tracking artifacts.
 
 The model's hyperparameters were tuned using `keras_tuner`. The best model configuration achieves recall of 0.8 and precision of 0.53 on a hold-out test set. Note that there are several limitations to the current model training, which are noted below, so the performance can certainly be improved on (I haven't done much with the model itself yet).
 
-### Evaluation
+#### Evaluation
 
 The trained model predicts on a hold-out validation set, and logs those metrics to MLflow as well.
 
-## Deployment Pipeline
+### Deployment Pipeline
 
 The deployment pipeline extends the training pipeline and implements a continuous deployment workflow. It preps the input data, trains a model, and (re)deploys the prediction server that serves the model, if the model's performance meets some evaluation criteria (minimum recall and precision).
 
-### Deployment Trigger
+#### Deployment Trigger
 
 After the model is trained and evaluated, the deployment trigger step checks whether the newly-trained model meets the criteria set for deployment.
 
-### Model Deployer
+#### Model Deployer
 
 This step deploys the model as a service using MLflow (if deployment criteria are met). 
 
 The MLflow deployment server runs locally as a daemon process that will continue to run in the background after the example execution is complete. When a new pipeline is run which produces a model that passes the evaluation checks, the pipeline automatically updates the currently-running MLflow deployment server to serve the new model instead of the old one.
 
-## Inference Pipeline
+### Inference Pipeline
 
 This project primarily uses a Streamlit application for inference, but it contains a separate inference pipeline for testing as well.
 
-## Streamlit Application
+### Streamlit Application
 
 For inference, I have a simple [Streamlit application](https://marinawyss-are-you-a-cat-appstreamlit-app-ccycwd.streamlit.app/) that consumes the latest model service asynchronously from the pipeline logic. 
 
@@ -72,10 +72,9 @@ The Streamlit app takes in a photo (selfie), and returns the probability that yo
 
 As a next step, I'd like to add a SHAP explanation of why the prediction was made for this particular photo. 
 
-Note that there are currently dependency resolution issues using the latest version of ZenML with \
-Streamlit (see [this open PR](https://github.com/zenml-io/zenml/pull/888)), so the app is temporarily using the model from the training pipeline.
+Note that there are currently dependency resolution issues using the latest version of ZenML with Streamlit (see [this open PR](https://github.com/zenml-io/zenml/pull/888)), so the app is temporarily using the model from the training pipeline.
 
-## Limitations
+### Limitations
 
 This pipeline is a simple first pass, and has some major limitations. Some things I plan to incorporate in the future include:
 
