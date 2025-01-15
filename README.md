@@ -1,3 +1,3 @@
-# Data Science Stuff I Learned Today
+# Deprecated!
 
-A place for documenting the neat data science stuff I'm learning.
+You can find me at [gratitudedriven.com](https://gratitudedriven.com)
